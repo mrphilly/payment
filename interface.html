@@ -1,0 +1,135 @@
+<html>
+
+<head>
+  <title>Derwiki's Stripe Payment form + checkout'</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" id="bootstrap-css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <link href="style.css" rel="stylesheet" />
+</head>
+
+<body style="font-family: 'Open Sans', sans-serif;">
+  <div class="container">
+    <div class="row">
+
+      <article class="col-md-4 well">
+        <div class="text-center">
+          <a class="btn btn-primary" href="#primaryModal" data-toggle="modal"><i class="glyphicon glyphicon-shopping-cart"></i>
+            Panneau d'achat</a>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="primaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header modal-header-primary">
+
+                <h2>
+                  <i class="glyphicon glyphicon-shopping-cart"></i> Procéder à l'achat
+                </h2>
+              </div>
+              <div class="modal-body">
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <form action="" method="" name="">
+                      <table class="table table-condensed">
+                        <p id="item-error" style="display: none; color: red">Données invalides</p>
+                        <thead>
+                          <tr>
+                            <th>Unité du poids</th>
+                            <th>Poids</th>
+                            <th>Prix</th>
+
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <select name="optionsA" id="unit" onchange="show()">
+                                <option></option>
+                                <option value="gr">grammes</option>
+                                <option value="kg">kilogrammes</option>
+                              </select>
+                            </td>
+
+
+
+                            <td>
+                              <input id="poids" type="number" class="form-control" />
+                            </td>
+
+                            <td>
+                              <input id="prix" type="number" class="form-control" onkeyup="show()" />
+                            </td>
+
+
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="payments-infos">
+                        <div class="lds-roller">
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                          <div></div>
+                        </div>
+                        <div id="pay">
+                          <p class="label">
+                            Douanes:<input name="douane" type="text" class="form-control" value="0.00" readonly />
+                          </p>
+                          <p class="label">
+                            Frais de livraison: (6500 CFA le Kilogramme)<input name="frais" type="text" class="form-control"
+                              value="0.00" readonly />
+                          </p>
+                          <p class="label">
+                            Total à payer:<input name="total" type="text" class="form-control" value="0.00" readonly />
+                          </p>
+
+                          <button type="button" class="btn btn-success pull-right valider" onclick="calcul()">
+                            Valider
+                          </button>
+
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+                <!-- ends col-12 -->
+              </div>
+              <div class="clearfix"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">
+                  Fermer
+                </button>
+                <button type="button" class="btn btn-primary pull-right purchase" onclick="calcul()">
+                  Obtenir un prix
+                </button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+      </article>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="calcul.js"></script>
+</body>
+
+</html>

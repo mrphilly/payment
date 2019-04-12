@@ -1,76 +1,51 @@
-function onReady(callback) {
-     var intervalId = window.setInterval(function () {
-          if (document.getElementsByTagName('body')[0] !== undefined) {
-               window.clearInterval(intervalId);
-               callback.call(this);
-          }
-     }, 3500);
-}
-
-function setVisible(selector, visible) {
-     document.querySelector(selector).style.display = visible ? 'block' : 'none';
-}
-
-
-function calcul() {
-     var select = $("#unit").val()
-     console.log(select)
-     var valeur = $("#prix").val();
-     var poids = $("#poids").val()
-     var _frais = $("input[name='frais']")
-     var douane = $("input[name='douane']")
-     var somme = $("input[name='total']");
-     var payments = $(".payments-infos")
-     var frais = 0
-
-     if (poids != null && poids != 0 && valeur != null && valeur != 0 && select != "") {
-          if (valeur < 66000) {
-               var douanes = 20000;
-          } else {
-               var douanes = valeur / 2;
-          }
-          if (select == "kg") {
-               var frais = poids * 6500;
-          } else {
-               var frais = poids * 6.5;
-
-          }
-          var total = +valeur + +douanes + +frais;
-          payments.css("display", "block")
-          onReady(function () {
-
-               setVisible('#pay', true);
-               setVisible('.lds-roller', false);
-
-          });
-          console.log(total)
-          _frais.attr("value", frais.toString() + " CFA")
-          douane.attr("value", douanes.toString() + " CFA")
-          somme.attr("value", total.toString() + " CFA")
-          $(".valider").css("display", "block")
-
-     } else {
-          $("#item-error").show()
-     }
+var id = $(".id")
+var image = $(".image-produit");
+var nom = $(".nom");
+var prix = $(".prix");
+var poids = $(".poids");
+var livraison = $(".livraison");
+var douane = $(".douane");
+var service = $(".service");
+var livraison_vendeur = $(".livraison-vendeur");
+var email = $(".email");
+var tel = $(".tel");
+var addresse = $(".addresse");
+var total = $(".total");
 
 
 
+$(document).ready(() => {
+     url = "https://api.comparez.co/api/v1/ads/242/"
+     fetch(url)
+          .then((resp) => resp.json()) // Transform the data into json
+          .then(function (data) {
+               id.val(data.id)
+               image.attr("src", data.image);
+               nom.text(data.name);
+               prix.text(data.price)
+               poids.text(data.size + " " + data.unit)
+               livraison.text(data.delivery_costs_per_kilo + " CFA")
+               douane.text(data.delivery_charges_territory + " CFA")
+               service.text(data.service_charge + " CFA")
+               livraison_vendeur.text(data.shipping_costs_of_seller + " CFA")
+               total.text("")
+          })
+})
 
-     return total
-}
 
-function show() {
-     var select = $("#unit").val();
-     var valeur = $("#prix").val();
-     var poids = $("#poids").val();
-     var button = $(".purchase")
-     var el = $("#item-error")
-     if (el != undefined) {
-          el.hide()
-     }
-     if (select == "" || poids == 0 || valeur == 0) {
-          button.css("display", "none")
-     } else {
-          button.css("display", "block")
-     }
+var payer = () => {
+     var _id = id.val()
+     var _email = email.val()
+     var _tel = tel.val()
+     var _addresse = addresse.val()
+     var amount_due = total.val().replace(" CFA", "")
+
+     url = "https://api.comparez.co/api/v1/get_payexpress_token/?ad_id=" + _id +
+          "&cancel_url=www.google.com&success_url=sn.comparez.co&user_phone=" + _tel +
+          "&user_email=" + _email + "&delivery_address=" + _addresse + "&amount_due=" + amount_due;
+     fetch(url)
+          .then((resp) => resp.json()) // Transform the data into json
+          .then(function (data) {
+               console.log(data)
+          })
 }

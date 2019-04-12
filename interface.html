@@ -1,135 +1,207 @@
 <html>
 
-<head>
-  <title>Derwiki's Stripe Payment form + checkout'</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" id="bootstrap-css" />
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <head>
+    <title>Derwiki's Stripe Payment form + checkout'</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      id="bootstrap-css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
-  <link href="style.css" rel="stylesheet" />
-</head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <link href="style.css" rel="stylesheet" />
+  </head>
 
-<body style="font-family: 'Open Sans', sans-serif;">
-  <div class="container">
-    <div class="row">
+  <body style="font-family: 'Open Sans', sans-serif;">
+    <div class="container">
+      <div class="row">
 
-      <article class="col-md-4 well">
-        <div class="text-center">
-          <a class="btn btn-primary" href="#primaryModal" data-toggle="modal"><i class="glyphicon glyphicon-shopping-cart"></i>
-            Panneau d'achat</a>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="primaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header modal-header-primary">
-
-                <h2>
-                  <i class="glyphicon glyphicon-shopping-cart"></i> Procéder à l'achat
-                </h2>
-              </div>
-              <div class="modal-body">
-                <div class="col-md-12">
-                  <div class="table-responsive">
-                    <form action="" method="" name="">
-                      <table class="table table-condensed">
-                        <p id="item-error" style="display: none; color: red">Données invalides</p>
-                        <thead>
-                          <tr>
-                            <th>Unité du poids</th>
-                            <th>Poids</th>
-                            <th>Prix</th>
-
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <select name="optionsA" id="unit" onchange="show()">
-                                <option></option>
-                                <option value="gr">grammes</option>
-                                <option value="kg">kilogrammes</option>
-                              </select>
-                            </td>
-
-
-
-                            <td>
-                              <input id="poids" type="number" class="form-control" />
-                            </td>
-
-                            <td>
-                              <input id="prix" type="number" class="form-control" onkeyup="show()" />
-                            </td>
-
-
-                          </tr>
-                        </tbody>
-                      </table>
-                      <div class="payments-infos">
-                        <div class="lds-roller">
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                          <div></div>
-                        </div>
-                        <div id="pay">
-                          <p class="label">
-                            Douanes:<input name="douane" type="text" class="form-control" value="0.00" readonly />
-                          </p>
-                          <p class="label">
-                            Frais de livraison: (6500 CFA le Kilogramme)<input name="frais" type="text" class="form-control"
-                              value="0.00" readonly />
-                          </p>
-                          <p class="label">
-                            Total à payer:<input name="total" type="text" class="form-control" value="0.00" readonly />
-                          </p>
-
-                          <button type="button" class="btn btn-success pull-right valider" onclick="calcul()">
-                            Valider
-                          </button>
-
-                        </div>
-                      </div>
-
-                    </form>
-                  </div>
-                </div>
-                <!-- ends col-12 -->
-              </div>
-              <div class="clearfix"></div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">
-                  Fermer
-                </button>
-                <button type="button" class="btn btn-primary pull-right purchase" onclick="calcul()">
-                  Obtenir un prix
-                </button>
-              </div>
-            </div>
-            <!-- /.modal-content -->
+        <article class="col-md-4 well">
+          <div class="text-center">
+            <a class="btn btn-primary" href="#primaryModal" data-toggle="modal"><i
+                class="glyphicon glyphicon-shopping-cart"></i>
+              Panneau d'achat</a>
           </div>
-          <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-      </article>
+          <!-- Modal -->
+          <div class="modal fade" id="primaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header modal-header-primary">
+
+                  <h3>
+                    <i class="fas fa-shopping-cart"></i> Procéder à l'achat
+                  </h3>
+                  <img class="img-fluid logo" style="width: 10%"
+                    src="http://137.74.199.121/img/comparez_logo/COMPAREZ.COb%20(1).png" alt="logo">
+                </div>
+                <div class="modal-body">
+                  <div class="col-md-12">
+                    <div class="table-responsive">
+                      <form action="" method="" name="">
+                        <table class="table table-condensed">
+
+                          <thead>
+                            <tr>
+
+                              <th>Image</th>
+                              <th>Nom du produit</th>
+                              <th>Prix du produit</th>
+                              <th>Poids du produit</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td style="width: 25%">
+                                <img class="image-produit" style="width: 35%"
+                                  src="http://137.74.199.121/img/comparez_logo/COMPAREZ.CO%20(1).png" alt="image">
+                              </td>
+                              <td style="width: 30%">
+                                <p class="label nom">
+                                  Bose Enceinte Bluetooth SoundLink Mini II - Noir Carbone
+                                </p>
+                              </td>
+
+
+                              <td>
+                                <p class="label prix">
+                                  95000 CFA
+                                </p>
+                              </td>
+
+                              <td>
+                                <p class="label poids">
+                                  450g
+                                </p>
+                              </td>
+                            </tr>
+                          </tbody>
+                          <thead>
+                            <tr>
+                              <th>Frais de livraison</th>
+                              <th>Frais de douane</th>
+                              <th>Frais de service</th>
+                              <th>Frais de livraison du vendeur</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>
+                                <p class="label livraison">
+                                  15000 CFA
+                                </p>
+                              </td>
+                              <td>
+                                <p class="label douane">
+                                  20000 CFA
+                                </p>
+                              </td>
+
+                              <td>
+                                <p class="label service">
+                                  10000 CFA
+                                </p>
+                              </td>
+
+                              <td>
+                                <p class="label livraison-vendeur">
+                                  3500 CFA
+                                </p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <table class="table table-condensed">
+                          <thead>
+                            <tr>
+                              <th>Email</th>
+                              <th>Téléphone</th>
+                              <th>Addresse de livraison</th>
+                              <th>Total à payer</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <input type="hidden" class="id">
+                            <tr>
+                              <td>
+                                <div class="input-group input-group-sm mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i
+                                        class="fas fa-envelope ic"></i></span>
+                                  </div>
+                                  <input type="email" class="form-control email" aria-label="Small"
+                                    aria-describedby="inputGroup-sizing-sm">
+                                </div>
+
+                              </td>
+                              <td>
+                                <div class="input-group input-group-sm mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i
+                                        class="fas fa-mobile ic"></i></span>
+                                  </div>
+                                  <input type="text" class="form-control tel" aria-label="Small"
+                                    aria-describedby="inputGroup-sizing-sm">
+                                </div>
+                              </td>
+
+                              <td>
+                                <div class="input-group input-group-sm mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i
+                                        class="fas fa-map-marker-alt ic"></i></i></span>
+                                  </div>
+                                  <input type="text" class="form-control addresse" aria-label="Small"
+                                    aria-describedby="inputGroup-sizing-sm">
+                                </div>
+                              </td>
+
+                              <td>
+                                <p class="label total">
+                                  1249870000 CFA
+                                </p>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+
+                      </form>
+                    </div>
+                  </div>
+                  <!-- ends col-12 -->
+                </div>
+                <div class="clearfix"></div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">
+                    <i class="fas fa-window-close"></i>
+                  </button>
+
+                  <button class='btn btn-lg pay' onclick="payer()">
+                    <i class="fas fa-wallet"></i> Payer
+                  </button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
+        </article>
+      </div>
     </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-  <script src="calcul.js"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="calcul.js"></script>
+    <script src="https://cdn.payexpresse.com/v1/payexpresse.min.js"></script>
+
+  </body>
 
 </html>

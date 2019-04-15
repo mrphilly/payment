@@ -31,6 +31,7 @@
      /**background-color : rgba(59, 97, 110, 0.5);*/
      /*background-image: linear-gradient(to right, #7a97b0, #74aab8, #7dbcb5, #9acaab, #c4d4a3);*/
      border: 1px solid #09548a;
+     border-radius: 20px;
 }
 
 tr{
@@ -54,8 +55,9 @@ button:focus {
      color: #09548a
 }
 .form-control{
-     
+     color: #09548a !important;
       font-size: 12px !important;
+      font-weight: bold;
     
      background-color: white;
      
@@ -75,12 +77,8 @@ border: 1px solid #094b85;
      border-bottom: 1px solid #eee;
    background-image: linear-gradient(to right, #094b85, #007399, #1a989a, #78b898, #c4d4a3);
    height: 60px;
-     -webkit-border-top-left-radius: 5px;
-     -webkit-border-top-right-radius: 5px;
-     -moz-border-radius-topleft: 5px;
-     -moz-border-radius-topright: 5px;
-     border-top-left-radius: 5px;
-     border-top-right-radius: 5px;
+   border-top-left-radius: 15px;
+   border-top-right-radius: 15px;
 }
 .pay{
     background-image: linear-gradient(to right, #094b85, #007399, #1a989a, #78b898, #c4d4a3);
@@ -95,7 +93,12 @@ body {
      font-family: 'Lato', sans-serif;
      background: #f7f7f4;
 }
-
+.modal-footer{
+     
+}
+.error{
+     color: red; font-size: 14px; position: absolute; margin-top: 100px; margin-left: 10px; display: none;
+}
 #pay {
      display: none;
 }

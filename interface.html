@@ -21,11 +21,11 @@
       <div class="row">
 
         <article class="col-md-4 well">
-          <div class="text-center">
+          <!-- <div class="text-center">
             <a class="btn btn-primary" href="#primaryModal" data-toggle="modal"><i
                 class="glyphicon glyphicon-shopping-cart"></i>
               Panneau d'achat</a>
-          </div>
+          </div>-->
           <!-- Modal -->
           <div class="modal fade" id="primaryModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
@@ -48,10 +48,10 @@
                           <thead>
                             <tr>
 
-                              <th>Image</th>
-                              <th>Nom du produit</th>
-                              <th>Prix du produit</th>
-                              <th>Poids du produit</th>
+                              <th>IMAGE</th>
+                              <th>NOM PRODUIT</th>
+                              <th>PRIX PRODUIT</th>
+                              <th>POIDS PRODUIT</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -82,10 +82,10 @@
                           </tbody>
                           <thead>
                             <tr>
-                              <th>Frais de livraison</th>
-                              <th>Frais de douane</th>
-                              <th>Frais de service</th>
-                              <th>Frais de livraison du vendeur</th>
+                              <th>FRAIS DE LIVRAISON</th>
+                              <th>FRAIS DE DOUANE</th>
+                              <th>FRAIS DE SERVICE</th>
+                              <th>FRAIS DE LIVRAISON VENDEUR</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -118,14 +118,24 @@
                         <table class="table table-condensed">
                           <thead>
                             <tr>
-                              <th>Email</th>
-                              <th>Téléphone</th>
-                              <th>Addresse de livraison</th>
-                              <th>Total à payer</th>
+                              <th>EMAIL</th>
+                              <th>TELEPHONE</th>
+                              <th>ADDRESSE DE LIVRAISON</th>
+                              <th>TOTAL</th>
                             </tr>
                           </thead>
+
                           <tbody>
                             <input type="hidden" class="id">
+                            <tr>
+                              <p class="error">
+                                Veuillez
+                                remplir
+                                tous les champs
+                                s'il
+                                vout plaît</p>
+
+                            </tr>
                             <tr>
                               <td>
                                 <div class="input-group input-group-sm mb-3">
@@ -134,7 +144,7 @@
                                         class="fas fa-envelope ic"></i></span>
                                   </div>
                                   <input type="email" class="form-control email" aria-label="Small"
-                                    aria-describedby="inputGroup-sizing-sm">
+                                    aria-describedby="inputGroup-sizing-sm" onkeyup="hideError()" required>
                                 </div>
 
                               </td>
@@ -145,7 +155,7 @@
                                         class="fas fa-mobile ic"></i></span>
                                   </div>
                                   <input type="text" class="form-control tel" aria-label="Small"
-                                    aria-describedby="inputGroup-sizing-sm">
+                                    aria-describedby="inputGroup-sizing-sm" onkeyup="hideError()" required>
                                 </div>
                               </td>
 
@@ -156,7 +166,7 @@
                                         class="fas fa-map-marker-alt ic"></i></i></span>
                                   </div>
                                   <input type="text" class="form-control addresse" aria-label="Small"
-                                    aria-describedby="inputGroup-sizing-sm">
+                                    aria-describedby="inputGroup-sizing-sm" onkeyup="hideError()" required>
                                 </div>
                               </td>
 
@@ -181,7 +191,7 @@
                     <i class="fas fa-window-close"></i>
                   </button>
 
-                  <button class='btn btn-lg pay' onclick="payer()">
+                  <button class='btn btn-lg pay' onclick="payer(this)">
                     <i class="fas fa-wallet"></i> Payer
                   </button>
                 </div>

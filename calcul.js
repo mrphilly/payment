@@ -15,15 +15,20 @@ var total = $(".total");
 
 
 $(document).ready(() => {
+     window.location.replace = "interface-payment.html?id_product=242"
      $("#primaryModal").modal("toggle")
-     url = "https://api.comparez.co/api/v1/ads/242/"
+     var url_string = window.location.href
+     var url = new URL(url_string);
+     var c = url.searchParams.get("id_product");
+     //alert(c);
+     url = "https://api.comparez.co/api/v1/ads/" + c
      fetch(url)
           .then((resp) => resp.json()) // Transform the data into json
           .then(function (data) {
                id.val(data.id)
                image.attr("src", data.image);
                nom.text(data.name);
-               prix.text(data.price)
+               prix.text(data.price + " CFA")
                poids.text(data.size + " " + data.unit)
                livraison.text(data.delivery_costs_per_kilo + " CFA")
                douane.text(data.delivery_charges_territory + " CFA")
@@ -31,16 +36,19 @@ $(document).ready(() => {
                livraison_vendeur.text(data.shipping_costs_of_seller + " CFA")
                total.text(data.total_delivery_charge)
           })
+
 })
 
 
-var payer = (btn) => {
+var payer = () => {
      var _id = id.val()
      var _email = email.val()
      var _tel = tel.val()
      var _addresse = addresse.val()
      var amount_due = total.text().replace(" CFA", "")
      var redirect = ""
+
+
 
 
      if (_email != "" && _tel != "" && _addresse != "") {
@@ -51,7 +59,8 @@ var payer = (btn) => {
           setTimeout(function () {
 
                $("#primaryModal").modal("toggle")
-               var selector = pQuery(btn);
+
+               var selector = pQuery($(".pay"));
                (new PayExpresse({
                     item_id: 1,
                })).withOption({

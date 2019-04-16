@@ -84,6 +84,7 @@ border: 1px solid #094b85;
     background-image: linear-gradient(to right, #094b85, #007399, #1a989a, #78b898, #c4d4a3);
      border-radius: 25px;
      color: white;
+     margin-left: 45%
 }
 .pull-left{
    border-radius: 25px;   
@@ -97,7 +98,7 @@ body {
      
 }
 .error{
-     color: red; font-size: 14px; position: absolute; margin-top: 100px; margin-left: 10px; display: none;
+     color: red; font-size: 14px; position: absolute; margin-top: 130px; margin-left: 10px; display: none;
 }
 #pay {
      display: none;
